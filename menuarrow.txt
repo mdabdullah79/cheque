@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <conio.h>
+
+void displayMainMenu(int selectedOption) {
+    printf("=====================\n");
+    printf("=====|Main Menu|=====\n");
+    printf("====/===========\======\n");
+    printf("%s Option 1\n", selectedOption == 1 ? ">>>" : "   ");
+    printf("%s Option 2\n", selectedOption == 2 ? ">>>" : "   ");
+    printf("%s Option 3\n", selectedOption == 3 ? ">>>" : "   ");
+    printf("%s Exit\n", selectedOption == 0 ? ">>>" : "   ");
+}
+
+int main() {
+    int selectedOption = 1;
+    int key;
+
+    do {
+        system("cls");  // Clear the console screen (Windows)
+
+        displayMainMenu(selectedOption);
+        key = getch();  // Read a single character from the keyboard
+
+        switch (key) {
+            case 224:  // Arrow key prefix
+                key = getch();  // Read the second character to determine the arrow key type
+                switch (key) {
+                    case 72:  // Up arrow
+                        if (selectedOption > 1)
+                            selectedOption--;
+                        break;
+                    case 80:  // Down arrow
+                        if (selectedOption < 3)
+                            selectedOption++;
+                        break;
+                }
+                break;
+        }
+    } while (key != 13);  // Loop until the Enter key (ASCII code 13) is pressed
+
+    // Process the selected option
+    switch (selectedOption) {
+        case 1:
+            printf("Option 1 selected.\n");
+            // Add your code for Option 1 here
+            break;
+        case 2:
+            printf("Option 2 selected.\n");
+            // Add your code for Option 2 here
+            break;
+        case 3:
+            printf("Option 3 selected.\n");
+            // Add your code for Option 3 here
+            break;
+    }
+
+    return 0;
+}
